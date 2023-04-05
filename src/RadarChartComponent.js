@@ -2,12 +2,14 @@ import React from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 
 const data = [
-  { name: 'A', value: 10 },
-  { name: 'B', value: 20 },
-  { name: 'C', value: 30 },
-  { name: 'D', value: 40 },
-  { name: 'E', value: 50 },
-  { name: 'F', value: 60 },
+  { name: 'HP', value: 10 },
+  { name: '力', value: 20 },
+  { name: '魔力', value: 30 },
+  { name: '速さ', value: 40 },
+  { name: '技', value: 50 },
+  { name: '幸運', value: 30 },
+  { name: '防御', value: 30 },
+  { name: '魔防', value: 40 },
 ];
 
 const RadarChartComponent = () => {
