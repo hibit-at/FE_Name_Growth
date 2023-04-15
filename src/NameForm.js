@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import "./NameForm.css";
+import { Spinner } from "react-bootstrap";
 
-
-const NameForm = ({ onNameSubmit }) => { // 追加: onNameSubmitをpropsとして受け取る
-  const [name, setName] = useState('');
+const NameForm = ({ onNameSubmit, loading }) => { // 追加: onNameSubmitをpropsとして受け取る
+  const [name, setName] = useState("");
   const [isValid, setIsValid] = useState(false);
-  const [result, setResult] = useState(''); // 追加: 結果表示用の状態
+  const [result, setResult] = useState(""); // 追加: 結果表示用の状態
 
   const handleChange = (event) => {
     const value = event.target.value;
@@ -18,7 +19,13 @@ const NameForm = ({ onNameSubmit }) => { // 追加: onNameSubmitをpropsとし�
     if (isValid) {
       onNameSubmit(name); // 変更: 送信された名前を親コンポーネントに渡す
     } else {
-      setResult('名前は1文字以上6文字以内の全角カタカナで入力してください。');
+      setResult("名前は1文字以上6文字以内の全角カタカナで入力してください。");
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.ctrlKey && event.key === "Enter") {
+      handleSubmit(event);
     }
   };
 
@@ -29,15 +36,29 @@ const NameForm = ({ onNameSubmit }) => { // 追加: onNameSubmitをpropsとし�
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
         <label>
-          名前：
-          <input type="text" value={name} onChange={handleChange} />
+          <input
+            type="text"
+            value={name}
+            onChange={handleChange}
+            placeholder="名前（例：マルス）"
+          />
         </label>
-        <Button type="submit" variant="primary" disabled={!isValid}>
+        <Button
+          type="submit"
+          variant="primary"
+          disabled={!isValid}
+          className="popButton"
+        >
           送信
         </Button>
       </form>
+      {loading && ( // 追加: loadingステートがtrueのときにスピナーを表示
+        <div className="ml-2">
+          <Spinner animation="border" size="sm" />
+        </div>
+      )}
       <p>{result}</p> {/* 結果表示用の要素を追加 */}
     </div>
   );
