@@ -53,12 +53,12 @@ const NameForm = ({ onNameSubmit, loading }) => { // 追加: onNameSubmitをprop
         >
           送信
         </Button>
+        {loading && ( // 追加: loadingステートがtrueのときにスピナーを表示
+          <div className="ml-2 d-inline-block">
+            <Spinner animation="border" size="sm" />
+          </div>
+        )}
       </form>
-      {loading && ( // 追加: loadingステートがtrueのときにスピナーを表示
-        <div className="ml-2">
-          <Spinner animation="border" size="sm" />
-        </div>
-      )}
       <p>{result}</p> {/* 結果表示用の要素を追加 */}
     </div>
   );

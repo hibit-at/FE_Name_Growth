@@ -63,12 +63,19 @@ function App() {
         {submittedName && (
           <Tabs defaultActiveKey="radar" id="chart-tabs">
             <Tab eventKey="radar" title={<FontAwesomeIcon icon={faChartPie} />}>
-              {/* タイトルをアイコンに変更 */}
-              <RadarChartComponent name={submittedName} chartData={chartData} />
+              <div style={{ minHeight: "500px" }}>
+                {/* 最小高さを設定 */}
+                <RadarChartComponent
+                  name={submittedName}
+                  chartData={chartData}
+                />
+              </div>
             </Tab>
             <Tab eventKey="bar" title={<FontAwesomeIcon icon={faChartBar} />}>
-              {/* タイトルをアイコンに変更 */}
-              <BarChartComponent name={submittedName} chartData={chartData} />
+              <div style={{ minHeight: "500px" }}>
+                {/* 最小高さを設定 */}
+                <BarChartComponent name={submittedName} chartData={chartData} />
+              </div>
             </Tab>
           </Tabs>
         )}
@@ -80,8 +87,11 @@ function App() {
               <TwitterShareButton
                 url={window.location.href}
                 // title={`「名前からファイアーエムブレムっぽい成長率を推定するやつ」で、ユニット名「${submittedName}」の成長率を推定しました！ 合計: ${total} %`} // totalを追加
-                title={`${submittedName}（${sex}）の成長率：\n${chartData.map(item => `${item.name}: ${item.value}%`).join(', ')} `}
-
+                title={`${submittedName}（${sex}）の成長率：\n${
+                  chartData.map((item) => `${item.name}: ${item.value}%`).join(
+                    ", ",
+                  )
+                } `}
                 hashtags={["FEっぽく成長率を推定"]}
                 className="mr-2"
               >
