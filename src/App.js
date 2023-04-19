@@ -24,7 +24,7 @@ function App() {
     try {
       // 追加: データ取得ロジック
       const response = await axios.post(
-        "http://3.21.44.203:8000/api/predict",
+        "https://3e8ydcjiwe.execute-api.us-east-2.amazonaws.com/fe-name/fe-name",
         { name: name },
       );
       const data = response.data;
