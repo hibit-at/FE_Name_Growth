@@ -24,7 +24,7 @@ function App() {
     try {
       // 追加: データ取得ロジック
       const response = await axios.post(
-        "https://fe-name.herokuapp.com/api/predict",
+        "http://3.21.44.203:8000/api/predict",
         { name: name },
       );
       const data = response.data;
